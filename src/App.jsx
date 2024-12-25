@@ -1,8 +1,10 @@
+import Title from "./components/Title"
+
 function App() {
   return (
-    <h1 className="text-3xl font-bold underline">
-      Hello world!
-    </h1>
+    <main className="max-w-3xl mx-auto py-10">
+      <Title />
+    </main>
   )
 }
 
