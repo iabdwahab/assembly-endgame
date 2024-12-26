@@ -1,6 +1,7 @@
 const KeyboardButton = ({ keyboardLetterObject, setKeyboardLettersState, word, setWord }) => {
   const { letter, status } = keyboardLetterObject;
 
+
   const classNames = 'w-12 h-12 rounded text-2xl font-bold border border-white hover:opacity-95 active:opacity-85'
   const styles = {
     backgroundColor: status === 'correct' ? '#10A95B'
@@ -9,6 +10,7 @@ const KeyboardButton = ({ keyboardLetterObject, setKeyboardLettersState, word, s
   }
 
   function handleClick(letter) {
+    // Update KEYBOARD State:
     setKeyboardLettersState(prevState => {
 
       return prevState.map(prevStateLetter => {
@@ -25,6 +27,24 @@ const KeyboardButton = ({ keyboardLetterObject, setKeyboardLettersState, word, s
       })
 
     })
+
+    // Update Word Viewer
+    setWord(prevWord => {
+      return {
+        wordText: prevWord.wordText,
+        lettersDetails: prevWord.lettersDetails.map(letterDetails => {
+          if (letterDetails.letterText === letter) {
+            return {
+              ...letterDetails,
+              isDisplayed: true,
+            }
+          } else {
+            return letterDetails
+          }
+        })
+      }
+    })
+
   }
 
   return (

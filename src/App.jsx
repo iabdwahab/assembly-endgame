@@ -8,6 +8,7 @@ import { getRandomWord } from "./utils"
 
 function App() {
   const [word, setWord] = useState(getRandomWord);
+  console.log('App:', word);
 
   return (
     <main className="max-w-xl mx-auto py-10 px-3 flex flex-col gap-8">
