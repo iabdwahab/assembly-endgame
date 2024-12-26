@@ -1,9 +1,10 @@
 import WordLetter from "./WordLetter"
 
 const WordContainer = ({ word }) => {
+  const { lettersDetails } = word;
 
-  const wordJSX = word.split('').map((letter, index) => (
-    <WordLetter key={index} letter={letter} />
+  const wordJSX = lettersDetails.map((letter, index) => (
+    <WordLetter key={index} letter={letter.letterText} isDisplayed={letter.isDisplayed} />
   ))
 
   return (

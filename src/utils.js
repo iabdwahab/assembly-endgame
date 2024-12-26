@@ -1,5 +1,13 @@
 export function getRandomWord(wordsList) {
   const randomIndex = Math.floor(Math.random() * wordsList.length);
+  const wordText = wordsList[randomIndex];
+  const lettersDetails = wordText.split('').map((letterText) => ({
+    letterText,
+    isDisplayed: false,
+  }));
 
-  return wordsList[randomIndex];
+  return {
+    wordText,
+    lettersDetails,
+  };
 }
