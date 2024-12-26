@@ -1,13 +1,14 @@
 import WordLetter from "./WordLetter"
 
-const WordContainer = () => {
+const WordContainer = ({ word }) => {
+
+  const wordJSX = word.split('').map(letter => (
+    <WordLetter letter={letter} />
+  ))
+
   return (
     <div className="flex gap-1 justify-center">
-      <WordLetter letter='H' />
-      <WordLetter letter='E' />
-      <WordLetter letter='L' />
-      <WordLetter letter='L' />
-      <WordLetter letter='O' />
+      {wordJSX}
     </div>
   )
 }
