@@ -9,3 +9,7 @@
 body {
   background-color: #282726;
 }
+
+button.disabled {
+  @apply opacity-50 pointer-events-none;
+}

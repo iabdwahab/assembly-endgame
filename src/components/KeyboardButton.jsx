@@ -1,6 +1,5 @@
-const KeyboardButton = ({ keyboardLetterObject, setKeyboardLettersState, word, setWord }) => {
+const KeyboardButton = ({ keyboardLetterObject, setKeyboardLettersState, word, setWord, buttonRef }) => {
   const { letter, status } = keyboardLetterObject;
-
 
   const classNames = 'w-12 h-12 rounded text-2xl font-bold border border-white hover:opacity-95 active:opacity-85'
   const styles = {
@@ -14,7 +13,6 @@ const KeyboardButton = ({ keyboardLetterObject, setKeyboardLettersState, word, s
     setKeyboardLettersState(prevState => {
 
       return prevState.map(prevStateLetter => {
-
         if (prevStateLetter.letter === letter) {
           return {
             ...prevStateLetter,
@@ -23,7 +21,6 @@ const KeyboardButton = ({ keyboardLetterObject, setKeyboardLettersState, word, s
         } else {
           return prevStateLetter
         }
-
       })
 
     })
@@ -48,7 +45,7 @@ const KeyboardButton = ({ keyboardLetterObject, setKeyboardLettersState, word, s
   }
 
   return (
-    <button className={classNames} onClick={() => handleClick(letter)} style={styles}>{letter}</button>
+    <button ref={buttonRef} className={classNames} onClick={() => handleClick(letter)} style={styles}>{letter}</button>
   )
 }
 
