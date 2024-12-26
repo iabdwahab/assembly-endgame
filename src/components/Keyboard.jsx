@@ -1,9 +1,13 @@
 import KeyboardButton from "./KeyboardButton"
+import { keyboardLetters } from "../data"
+import { useState } from "react"
 
-const Keyboard = ({ keyboardLetters }) => {
+const Keyboard = ({ word, setWord }) => {
+  const [keyboardLettersState, setKeyboardLettersState] = useState(keyboardLetters)
+
   return (
     <div className="flex flex-wrap gap-2 justify-center items-start">
-      {keyboardLetters.map((letter, index) => <KeyboardButton key={index} data={letter} />)}
+      {keyboardLettersState.map((letter, index) => <KeyboardButton key={index} keyboardLetterObject={letter} setKeyboardLettersState={setKeyboardLettersState} word={word} setWord={setWord} />)}
     </div>
   )
 }
