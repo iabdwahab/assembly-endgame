@@ -1,15 +1,19 @@
-import { useEffect, useState } from "react"
+import { useEffect, useRef, useState } from "react"
 import EliminationsContainer from "./components/EliminationsContainer"
 import Keyboard from "./components/Keyboard"
 import Title from "./components/Title"
 import WordContainer from "./components/WordContainer"
 import { checkWinning, getRandomWord } from "./utils"
 import Message from "./components/Message"
+import { eliminations, keyboardLetters } from "./data"
 
 function App() {
-  const [word, setWord] = useState(getRandomWord);
-  const [attempts, setAttempts] = useState(0);
   const [gameStatus, setGameStatus] = useState('playing');
+  const [word, setWord] = useState(getRandomWord);
+  const [eliminationList, setEliminationList] = useState(eliminations);
+  const [attempts, setAttempts] = useState(0);
+  const [keyboardLettersState, setKeyboardLettersState] = useState(keyboardLetters);
+  const keyboardButtonsRef = useRef([]);
 
   useEffect(() => {
     if (checkWinning(word)) {
@@ -19,16 +23,29 @@ function App() {
     }
   }, [word])
 
+  function setNewGame() {
+    setKeyboardLettersState(keyboardLetters);
+    setEliminationList(eliminations)
+    setWord(getRandomWord);
+    setAttempts(0);
+    setGameStatus('playing');
+
+    keyboardButtonsRef.current.forEach(btn => {
+      btn.disabled = false;
+      btn.classList.remove('disabled');
+    });
+  }
+
   console.log('App:', word);
   console.log(attempts)
 
   return (
     <main className="max-w-xl mx-auto py-10 px-3 flex flex-col gap-8">
       <Title />
-      {gameStatus !== 'playing' && <Message gameStatus={gameStatus} />}
-      <EliminationsContainer attempts={attempts} />
+      {gameStatus !== 'playing' && <Message gameStatus={gameStatus} setNewGame={setNewGame} />}
+      <EliminationsContainer attempts={attempts} eliminationList={eliminationList} setEliminationList={setEliminationList} />
       <WordContainer word={word} />
-      <Keyboard word={word} setWord={setWord} setAttempts={setAttempts} gameStatus={gameStatus} />
+      <Keyboard keyboardLettersState={keyboardLettersState} setKeyboardLettersState={setKeyboardLettersState} keyboardButtonsRef={keyboardButtonsRef} word={word} setWord={setWord} setAttempts={setAttempts} gameStatus={gameStatus} />
     </main>
   )
 }

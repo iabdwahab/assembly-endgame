@@ -1,9 +1,7 @@
 import Elimination from "./Elimination"
-import { eliminations } from "../data"
-import { useEffect, useState } from "react"
+import { useEffect } from "react"
 
-const EliminationsContainer = ({ attempts }) => {
-  const [eliminationList, setEliminationList] = useState(eliminations);
+const EliminationsContainer = ({ attempts, eliminationList, setEliminationList }) => {
 
   useEffect(() => {
 

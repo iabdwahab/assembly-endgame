@@ -1,4 +1,4 @@
-const Message = ({ gameStatus }) => {
+const Message = ({ gameStatus, setNewGame }) => {
   const containerClassNames = `
     absolute
     w-screen
@@ -26,6 +26,10 @@ const Message = ({ gameStatus }) => {
     bg-[#282726]
     `
 
+  function handleClick() {
+    setNewGame()
+  }
+
   return (
     <div className={containerClassNames}>
       <div className={modalClassNames}>
@@ -36,7 +40,7 @@ const Message = ({ gameStatus }) => {
             {gameStatus === 'won' ? 'Well done! 🎉' : 'Better luck next time.'}
           </p>
         </div>
-        <button className="bg-black text-white text-lg w-full rounded py-3">New Game</button>
+        <button onClick={handleClick} className="bg-black text-white text-lg w-full rounded py-3">New Game</button>
       </div>
     </div >
   )

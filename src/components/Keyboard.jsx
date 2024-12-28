@@ -1,11 +1,6 @@
 import KeyboardButton from "./KeyboardButton"
-import { keyboardLetters } from "../data"
-import { useRef, useState } from "react"
 
-const Keyboard = ({ word, setWord, setAttempts, gameStatus }) => {
-  const [keyboardLettersState, setKeyboardLettersState] = useState(keyboardLetters)
-  const keyboardButtonsRef = useRef([]);
-
+const Keyboard = ({ word, setWord, setAttempts, gameStatus, keyboardLettersState, setKeyboardLettersState, keyboardButtonsRef }) => {
   if (gameStatus === 'won' || gameStatus === 'lose') {
     disabelKeyboard();
   }
