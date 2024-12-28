@@ -1,4 +1,4 @@
-export const eliminationList = [
+export const eliminations = [
   { id: 1, value: 'HTML', bgColor: '#E2680F', textColor: 'white', isEliminated: false },
   { id: 2, value: 'CSS', bgColor: '#328AF1', textColor: 'white', isEliminated: false },
   { id: 3, value: 'JavaScript', bgColor: '#F4EB13', textColor: 'black', isEliminated: false },
