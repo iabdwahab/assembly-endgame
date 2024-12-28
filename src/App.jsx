@@ -4,6 +4,7 @@ import Keyboard from "./components/Keyboard"
 import Title from "./components/Title"
 import WordContainer from "./components/WordContainer"
 import { checkWinning, getRandomWord } from "./utils"
+import Message from "./components/Message"
 
 function App() {
   const [word, setWord] = useState(getRandomWord);
@@ -24,6 +25,7 @@ function App() {
   return (
     <main className="max-w-xl mx-auto py-10 px-3 flex flex-col gap-8">
       <Title />
+      {gameStatus !== 'playing' && <Message gameStatus={gameStatus} />}
       <EliminationsContainer attempts={attempts} />
       <WordContainer word={word} />
       <Keyboard word={word} setWord={setWord} setAttempts={setAttempts} gameStatus={gameStatus} />
