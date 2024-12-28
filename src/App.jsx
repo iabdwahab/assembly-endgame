@@ -1,13 +1,23 @@
-import { useState } from "react"
+import { useEffect, useState } from "react"
 import EliminationsContainer from "./components/EliminationsContainer"
 import Keyboard from "./components/Keyboard"
 import Title from "./components/Title"
 import WordContainer from "./components/WordContainer"
-import { getRandomWord } from "./utils"
+import { checkWinning, getRandomWord } from "./utils"
 
 function App() {
   const [word, setWord] = useState(getRandomWord);
   const [attempts, setAttempts] = useState(0);
+  const [gameStatus, setGameStatus] = useState('playing');
+
+  useEffect(() => {
+    if (checkWinning(word)) {
+      setGameStatus('won');
+    } else if (attempts >= 8) {
+      setGameStatus('lose');
+    }
+  }, [word])
+
   console.log('App:', word);
   console.log(attempts)
 
@@ -16,7 +26,7 @@ function App() {
       <Title />
       <EliminationsContainer attempts={attempts} />
       <WordContainer word={word} />
-      <Keyboard word={word} setWord={setWord} setAttempts={setAttempts} />
+      <Keyboard word={word} setWord={setWord} setAttempts={setAttempts} gameStatus={gameStatus} />
     </main>
   )
 }

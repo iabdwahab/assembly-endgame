@@ -2,14 +2,16 @@ import KeyboardButton from "./KeyboardButton"
 import { keyboardLetters } from "../data"
 import { useRef, useState } from "react"
 
-const Keyboard = ({ word, setWord, setAttempts }) => {
+const Keyboard = ({ word, setWord, setAttempts, gameStatus }) => {
   const [keyboardLettersState, setKeyboardLettersState] = useState(keyboardLetters)
+  const keyboardButtonsRef = useRef([]);
 
-  const isWon = word.lettersDetails.every(letter => letter.isDisplayed);
-  const buttonsRef = useRef([]);
+  if (gameStatus === 'won' || gameStatus === 'lose') {
+    disabelKeyboard();
+  }
 
-  if (isWon) {
-    buttonsRef.current.forEach(btn => {
+  function disabelKeyboard() {
+    keyboardButtonsRef.current.forEach(btn => {
       btn.disabled = true;
       btn.classList.add('disabled');
     });
@@ -17,7 +19,7 @@ const Keyboard = ({ word, setWord, setAttempts }) => {
 
   return (
     <div className="flex flex-wrap gap-2 justify-center items-start">
-      {keyboardLettersState.map((letter, index) => <KeyboardButton key={index} buttonRef={(btn) => buttonsRef.current[index] = btn} keyboardLetterObject={letter} setKeyboardLettersState={setKeyboardLettersState} word={word} setWord={setWord} setAttempts={setAttempts} />)}
+      {keyboardLettersState.map((letter, index) => <KeyboardButton key={index} buttonRef={(btn) => keyboardButtonsRef.current[index] = btn} keyboardLetterObject={letter} setKeyboardLettersState={setKeyboardLettersState} word={word} setWord={setWord} setAttempts={setAttempts} />)}
     </div>
   )
 }

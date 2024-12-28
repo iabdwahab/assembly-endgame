@@ -13,3 +13,7 @@ export function getRandomWord() {
     lettersDetails,
   };
 }
+
+export function checkWinning(word) {
+  return word.lettersDetails.every((letter) => letter.isDisplayed);
+}
