@@ -36,9 +36,6 @@ function App() {
     });
   }
 
-  console.log('App:', word);
-  console.log(attempts)
-
   return (
     <main className="max-w-xl mx-auto py-10 px-3 flex flex-col gap-8">
       <Title />
