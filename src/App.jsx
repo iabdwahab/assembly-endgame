@@ -16,9 +16,6 @@ function App() {
   const [keyboardLettersState, setKeyboardLettersState] = useState(keyboardLetters);
   const keyboardButtonsRef = useRef([]);
 
-  console.log(word)
-  console.log(word.hint)
-
   useEffect(() => {
     if (checkWinning(word)) {
       setGameStatus('won');
