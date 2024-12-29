@@ -1,8 +1,8 @@
 const Message = ({ gameStatus, setNewGame }) => {
   const containerClassNames = `
     absolute
-    w-screen
-    h-screen
+    w-full
+    h-full
     px-2
     top-0
     left-0

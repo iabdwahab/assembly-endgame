@@ -10,6 +10,10 @@ body {
   background-color: #282726;
 }
 
+div#root {
+  position: relative;
+}
+
 button.disabled {
   @apply opacity-50 pointer-events-none;
 }

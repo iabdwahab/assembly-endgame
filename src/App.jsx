@@ -6,6 +6,7 @@ import WordContainer from "./components/WordContainer"
 import { checkWinning, getRandomWord } from "./utils"
 import Message from "./components/Message"
 import { eliminations, keyboardLetters } from "./data"
+import Hint from "./components/Hint"
 
 function App() {
   const [gameStatus, setGameStatus] = useState('playing');
@@ -14,6 +15,9 @@ function App() {
   const [attempts, setAttempts] = useState(0);
   const [keyboardLettersState, setKeyboardLettersState] = useState(keyboardLetters);
   const keyboardButtonsRef = useRef([]);
+
+  console.log(word)
+  console.log(word.hint)
 
   useEffect(() => {
     if (checkWinning(word)) {
@@ -41,6 +45,7 @@ function App() {
       <Title />
       {gameStatus !== 'playing' && <Message gameStatus={gameStatus} setNewGame={setNewGame} />}
       <EliminationsContainer attempts={attempts} eliminationList={eliminationList} setEliminationList={setEliminationList} />
+      <Hint hint={word.hint} />
       <WordContainer word={word} />
       <Keyboard keyboardLettersState={keyboardLettersState} setKeyboardLettersState={setKeyboardLettersState} keyboardButtonsRef={keyboardButtonsRef} word={word} setWord={setWord} setAttempts={setAttempts} gameStatus={gameStatus} />
     </main>

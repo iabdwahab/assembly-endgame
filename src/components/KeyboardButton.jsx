@@ -34,6 +34,7 @@ const KeyboardButton = ({ keyboardLetterObject, setKeyboardLettersState, word, s
       setWord(prevWord => {
         return {
           wordText: prevWord.wordText,
+          hint: prevWord.hint,
           lettersDetails: prevWord.lettersDetails.map(letterDetails => {
             if (letterDetails.letterText === letterObject.letter) {
               return {

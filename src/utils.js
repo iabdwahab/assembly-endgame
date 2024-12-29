@@ -2,7 +2,10 @@ import wordsList from './words';
 
 export function getRandomWord() {
   const randomIndex = Math.floor(Math.random() * wordsList.length);
-  const wordText = wordsList[randomIndex];
+
+  const wordObject = wordsList[randomIndex];
+  const { word: wordText, hint } = wordObject;
+
   const lettersDetails = wordText.split('').map((letterText) => ({
     letterText,
     isDisplayed: false,
@@ -10,6 +13,7 @@ export function getRandomWord() {
 
   return {
     wordText,
+    hint,
     lettersDetails,
   };
 }
