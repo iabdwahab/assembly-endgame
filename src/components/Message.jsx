@@ -3,6 +3,7 @@ const Message = ({ gameStatus, setNewGame }) => {
     absolute
     w-screen
     h-screen
+    px-2
     top-0
     left-0
     z-10
